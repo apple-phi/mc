@@ -1,15 +1,18 @@
-version: '3'
+version: '3.4'
 
 services:
-  minecraft:
-    image: itzg/minecraft-server
-    ports:
-      - "25565:25565"
-    volumes:
-      - "mc:/data"
+  bds:
+    image: itzg/minecraft-bedrock-server
     environment:
       EULA: "TRUE"
-    restart: always
+      GAMEMODE: survival
+      DIFFICULTY: normal
+    ports:
+      - "19132:19132/udp"
+    volumes:
+      - bds:/data
+    stdin_open: true
+    tty: true
 
 volumes:
-  mc: {}
+  bds: {}
